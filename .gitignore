@@ -25,4 +25,5 @@ erl_crash.dump
 /config/prod.secret.exs
 
 /.vscode
-
+/.idea
+elmcontacts.iml
