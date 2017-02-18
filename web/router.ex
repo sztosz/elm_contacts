@@ -20,7 +20,9 @@ defmodule ElmContacts.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ElmContacts do
-  #   pipe_through :api
-  # end
+  scope "/api", ElmContacts do
+    pipe_through :api
+
+    resources "/contacts", ContactController, only: [:index]
+  end
 end

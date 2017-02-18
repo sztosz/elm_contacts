@@ -1,5 +1,11 @@
 defmodule ElmContacts.Contact do
   use ElmContacts.Web, :model
+  
+  @genders [
+    {0, :male},
+    {1, :female}
+  ]
+  @derive {Poison.Encoder, except: [:__meta__, :inserted_at, :update_at]}
 
   schema "contacts" do
     field :first_name, :string
@@ -23,4 +29,6 @@ defmodule ElmContacts.Contact do
     |> cast(params, [:first_name, :last_name, :gender, :birth_date, :location, :phone_number, :email, :headline, :picture])
     |> validate_required([:first_name, :last_name, :gender, :birth_date, :location, :phone_number, :email, :headline, :picture])
   end
+
+  def genders, do: @genders
 end

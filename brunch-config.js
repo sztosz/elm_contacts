@@ -59,8 +59,14 @@ exports.config = {
     elmBrunch: {
       elmFolder: "web/elm",
       mainModules: ["Main.elm"],
-      outputFolder: "../static/js"
-    }
+      outputFolder: "../static/js",
+      makeParameters: ['--debug'],
+    },
+    stylus: {
+      plugins: {
+        stylus: ['nib'],
+      },
+    },
   },
 
   modules: {
@@ -70,6 +76,9 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    styles: {
+      'normalize.css': ['normalize.css'],
+    },
   }
 };
