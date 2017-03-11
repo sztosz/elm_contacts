@@ -13304,7 +13304,7 @@ var _user$project$Contact_View$contactView = function (model) {
 					ctor: '::',
 					_0: {
 						ctor: '_Tuple2',
-						_0: 'feamale',
+						_0: 'female',
 						_1: _elm_lang$core$Native_Utils.eq(model.gender, 1)
 					},
 					_1: {ctor: '[]'}

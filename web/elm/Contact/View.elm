@@ -13,7 +13,7 @@ contactView model =
             classList
                 [ ( "card", True )
                 , ( "male", model.gender == 0 )
-                , ( "feamale", model.gender == 1 )
+                , ( "female", model.gender == 1 )
                 ]
 
         fullName =
