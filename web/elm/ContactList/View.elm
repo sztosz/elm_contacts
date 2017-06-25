@@ -1,5 +1,6 @@
 module ContactList.View exposing (indexView)
 
+import Common.View exposing (warningMessage)
 import Contact.View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -44,18 +45,6 @@ viewContent model =
             , paginationList page
             ]
 
-warningMessage : String -> String -> Html Msg -> Html Msg
-warningMessage iconClasses message content =
-    div
-        [ class "warning" ]
-        [ span
-            [ class "fa-stack" ]
-            [ i [ class iconClasses ] [] ]
-        , h4
-            []
-            [ text message ]
-        , content
-        ]
 
 searchSection : Model -> Html Msg
 searchSection model =

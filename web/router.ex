@@ -13,16 +13,17 @@ defmodule ElmContacts.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ElmContacts do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-  end
 
   # Other scopes may use custom stacks.
   scope "/api", ElmContacts do
     pipe_through :api
 
-    resources "/contacts", ContactController, only: [:index]
+    resources "/contacts", ContactController, only: [:index, :show]
+  end
+
+  scope "/", ElmContacts do
+    pipe_through :browser # Use the default browser stack
+
+    get "/*path", PageController, :index
   end
 end

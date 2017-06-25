@@ -1,9 +1,12 @@
 module Contact.View exposing (..)
 
+import Common.View exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Messages exposing (..)
 import Model exposing (..)
+import Routing exposing (Route(..))
 
 
 contactView : Contact -> (String, Html Msg)
@@ -21,7 +24,9 @@ contactView model =
     in
         ( toString model.id
         , div
-            [ classes ]
+            [ classes
+            , onClick <| NavigateTo <| ShowContactRoute model.id
+            ]
             [ div
                 [ class "inner" ]
                 [ header
@@ -84,3 +89,47 @@ contactView model =
                 ]
             ]
         )
+
+showContactView : Model -> Html Msg
+showContactView model =
+    case model.contact of
+        Success contact ->
+            let
+                classes =
+                    classList
+                        [ ( "person-detail", True )
+                        , ( "male", contact.gender == 0 )
+                        , ( "female", contact.gender == 1 )
+                        ]
+
+                ( _, content ) =
+                    contactView contact
+
+            in
+                div
+                    [ id "contacts_show" ]
+                    [ header []
+                        [ h3
+                            []
+                            [ text "Person detail" ]
+                        ]
+                    , backToHomeLink
+                    , div
+                        [ classes ]
+                        [ content ]
+                    ]
+
+        Requesting ->
+            warningMessage
+                "fa fa-spin fa-cog fa-x2 fa-fw"
+                "Fetching contact"
+                (text "")
+
+        Failure error ->
+            warningMessage
+                "fa fa-spin fa-cog fa-x2 fa-fw"
+                error
+                (text "")
+
+        NotRequested ->
+            text ""
