@@ -2,7 +2,7 @@ defmodule ElmContacts.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", ElmContacts.RoomChannel
+  channel "contacts", ElmContacts.ContactsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

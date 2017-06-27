@@ -4,11 +4,14 @@ import Http
 import Model exposing (ContactList, Contact)
 import Navigation
 import Routing exposing (Route)
+import Json.Encode as JE
 
 
 type Msg
-    = FetchResult (Result Http.Error ContactList)
-    | FetchContactResult (Result Http.Error Contact)
+    = FetchContactListSuccess JE.Value
+    | FetchContactListError JE.Value
+    | FetchContactSuccess JE.Value
+    | FetchContactError JE.Value
     | Paginate Int
     | HandleSearchInput String
     | HandleFormSubmit

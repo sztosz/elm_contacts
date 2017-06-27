@@ -1,6 +1,11 @@
 module Model exposing (..)
 import Routing exposing (Route)
 
+
+type alias Flags =
+    { socketUrl : String }
+
+
 type RemoteData error answer
     = NotRequested
     | Requesting
@@ -13,6 +18,7 @@ type alias Model =
     , search : String
     , route : Route
     , contact : RemoteData String Contact
+    , flags : Flags
     }
 
 
@@ -47,10 +53,11 @@ initialContactList =
     }
 
 
-initialModel : Route -> Model
-initialModel route =
+initialModel : Flags -> Route -> Model
+initialModel flags route =
     { contactList = NotRequested
     , search = ""
     , route = route
     , contact = NotRequested
+    , flags = flags
     }
